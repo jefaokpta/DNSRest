@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Jefferson Alves Reis (jefaokpta) < jefaokpta@hotmail.com >
  */
 @RestController
-@RequestMapping("v1")
+@RequestMapping("v1/protected")
 public class UserEndpoint {
     
     private final UserRepository dao;
@@ -30,7 +30,7 @@ public class UserEndpoint {
         this.dao = dao;
     }
     
-    @PostMapping("/users")
+    @PostMapping("/login")
     public ResponseEntity<?> get(@RequestBody User user){
         return new ResponseEntity<>(dao.findByUsername(user.getUsername()), HttpStatus.OK);
     }
