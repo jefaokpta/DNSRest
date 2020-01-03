@@ -25,10 +25,14 @@ public class User implements Serializable {
     @Column(name = "idusers")
     private int id;
     private String name;
-    @JsonIgnore
     private String password;
     private String username;
     private boolean admin;
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", name=" + name + ", password=" + password + ", username=" + username + ", admin=" + admin + '}';
+    }
 
     
 
