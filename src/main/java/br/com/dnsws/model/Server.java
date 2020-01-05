@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity @Table(name = "servers")
 public class Server implements Serializable{
-    
+    // TESTE GIT
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idservers")
     private int id;
