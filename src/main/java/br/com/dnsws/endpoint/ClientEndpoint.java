@@ -7,6 +7,8 @@ package br.com.dnsws.endpoint;
 
 import br.com.dnsws.model.Client;
 import br.com.dnsws.repository.ClientRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("v1/protected")
+@Api(value="API REST Clientes")
 public class ClientEndpoint {
     
     private final ClientRepository dao;
@@ -33,22 +36,26 @@ public class ClientEndpoint {
         this.dao = dao;
     }
     
+    @ApiOperation(value="Retorna todos os Clientes")
     @GetMapping("/clients")
     public ResponseEntity<?> get(){
         return new ResponseEntity<>(dao.findAll(),HttpStatus.OK);
     }
 
+    @ApiOperation(value="Cria novo Cliente")
     @PostMapping("/clients")
     public ResponseEntity<?> save(@RequestBody Client client){
         return new ResponseEntity<>(dao.save(client), HttpStatus.CREATED);
     }
     
+    @ApiOperation(value="Apaga um Cliente")
     @DeleteMapping("/clients/{id}")
     public ResponseEntity<?> delete(@PathVariable int id){
         dao.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
+    @ApiOperation(value="Edita um Cliente")
     @PutMapping("/clients")
     public ResponseEntity<?> update(@RequestBody Client client){
         dao.save(client);
